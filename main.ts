@@ -45,6 +45,15 @@ app.get("/DataServer", async (req, res) => {
     ContentType: "",
   };
 
+  if (parseFloat(z) > 18) {
+    data.base64 =
+      "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAABYSURBVHja7MEBAQAAAICQ/q/uCAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYAAEGAAEPAAG0CHKNAAAAAElFTkSuQmCC";
+    data.ContentType = "image/png";
+    res.header("Content-Type", data.ContentType);
+    res.send(Buffer.from(data.base64, "base64"));
+    return;
+  }
+
   try {
     await fs.promises.access(cacheFilePath, fs.constants.F_OK);
     console.log(`File ${cacheFilePath} exists`);
