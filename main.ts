@@ -2,6 +2,7 @@ import axios from "axios";
 import express from "express";
 import fs from "fs";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const TIANDITU_KEY = process.env.TIANDITU_KEY ?? "";
 const DATA_DIR = process.env.DATA_DIR ?? "./Data";
 createDataDir(DATA_DIR);
 
+app.use(cors());
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
